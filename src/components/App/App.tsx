@@ -3,11 +3,3 @@ const App = (): React.ReactElement => {
 };
 
 export default App;
-
-// const dispatch = useAppDispatch();
-
-// useEffect(() => {
-//   loadTasks = (tasks: []) => {
-//     dispatch(loadTasks(tasks));
-//   };
-// });
