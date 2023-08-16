@@ -20,6 +20,12 @@ export const tasksSlice = createSlice({
     loadTasks: (_currentState, action: PayloadAction<Task[]>): TasksState => ({
       tasks: action.payload,
     }),
+
+    deleteTasks: (currentState, action: PayloadAction<number>): TasksState => ({
+      tasks: (currentState.tasks = currentState.tasks.filter(
+        (task) => task.id !== action.payload,
+      )),
+    }),
   },
 });
 
