@@ -21,13 +21,14 @@ export const tasksSlice = createSlice({
       tasks: action.payload,
     }),
 
-    deleteTasks: (currentState, action: PayloadAction<number>): TasksState => ({
-      tasks: (currentState.tasks = currentState.tasks.filter(
-        (task) => task.id !== action.payload,
-      )),
+    deleteTask: (currentState, action: PayloadAction<number>): TasksState => ({
+      tasks: currentState.tasks.filter((task) => task.id !== action.payload),
     }),
   },
 });
 
-export const { loadTasks: loadTaskActionCreator } = tasksSlice.actions;
+export const {
+  loadTasks: loadTaskActionCreator,
+  deleteTask: deleteTaskActionCreator,
+} = tasksSlice.actions;
 export const tasksSliceReducer = tasksSlice.reducer;
