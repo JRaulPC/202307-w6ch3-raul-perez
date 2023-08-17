@@ -7,3 +7,24 @@
 html {
   font-family: sans-serif;
 }
+body {
+  padding: 20px;
+  margin: 0;
+}
+
+button {
+  background: none;
+  border-radius: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 10px;
+}
