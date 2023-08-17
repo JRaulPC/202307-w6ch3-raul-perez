@@ -12,6 +12,8 @@ describe("Given a TasksList component", () => {
     },
   });
 
+  const textHeading = "Comer";
+
   describe("When is rendered with the tasks 'Comer' and 'Go more to bootcamp'", () => {
     test("Then it should show the tasks 'Comer' and 'Go more to bootcamp' listed inside headings", () => {
       render(
@@ -35,7 +37,7 @@ describe("Given a TasksList component", () => {
         </Provider>,
       );
 
-      const taskHeading = screen.getByRole("heading", { name: "Comer" });
+      const taskHeading = screen.getByRole("heading", { name: textHeading });
       const deleteButton = within(taskHeading.closest(".task")!).getByRole(
         "button",
         {
@@ -46,6 +48,32 @@ describe("Given a TasksList component", () => {
       await userEvent.click(deleteButton);
 
       expect(taskHeading).not.toBeInTheDocument();
+    });
+  });
+
+  describe("When the done button from the 'Comer' task is clicked", () => {
+    test("Then it should show a green icon to the right of the button", async () => {
+      render(
+        <Provider store={store}>
+          <TasksList />
+        </Provider>,
+      );
+
+      const taskHeading = screen.getByRole("heading", {
+        name: "Go more to bootcamp",
+      });
+      const doneButton = within(taskHeading.closest(".task")!).getByRole(
+        "button",
+        {
+          name: /done/i,
+        },
+      );
+
+      await userEvent.click(doneButton);
+
+      const task = mockedTasks[1];
+
+      expect(task).toHaveProperty("isDone", false);
     });
   });
 });

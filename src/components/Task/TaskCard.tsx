@@ -24,13 +24,14 @@ const TaskCard = ({
 
   return (
     <article className="task">
-      <h2 className="task__title">
-        {name} {isDone && <span>✅</span>}
-      </h2>
-      <button key={id} onClick={() => toogleTask(id)}>
+      <div className="task__header">
+        <h2 className="task__title">{name}</h2>
+        {isDone && <span>✅</span>}
+      </div>
+      <button className="done-button" key={id} onClick={() => toogleTask(id)}>
         Done
       </button>
-      <button key={id} onClick={() => deleteTask(id)}>
+      <button className="delete-button" key={id} onClick={() => deleteTask(id)}>
         Delete
       </button>
     </article>
