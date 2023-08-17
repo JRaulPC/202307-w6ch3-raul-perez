@@ -1,5 +1,8 @@
 import { useDispatch } from "react-redux";
-import { deleteTaskActionCreator } from "../../store/tasks/tasks";
+import {
+  deleteTaskActionCreator,
+  toogleTaskActionCreator,
+} from "../../store/tasks/tasks";
 import { Task } from "../../types";
 import "./TaskCard.css";
 interface TaskComponentProps {
@@ -7,7 +10,7 @@ interface TaskComponentProps {
 }
 
 const TaskCard = ({
-  task: { id, name },
+  task: { id, name, isDone },
 }: TaskComponentProps): React.ReactElement => {
   const dispatch = useDispatch();
 
@@ -15,11 +18,20 @@ const TaskCard = ({
     dispatch(deleteTaskActionCreator(id));
   };
 
+  const toogleTask = (id: number) => {
+    dispatch(toogleTaskActionCreator(id));
+  };
+
   return (
     <article className="task">
-      <h2 className="task__title">{name}</h2>
-      <button>Done</button>
-      <button key={id} onClick={() => deleteTask(id)}>
+      <div className="task__header">
+        <h2 className="task__title">{name}</h2>
+        {isDone && <span>✅</span>}
+      </div>
+      <button className="done-button" key={id} onClick={() => toogleTask(id)}>
+        Done
+      </button>
+      <button className="delete-button" key={id} onClick={() => deleteTask(id)}>
         Delete
       </button>
     </article>

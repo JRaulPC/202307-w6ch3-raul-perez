@@ -11,17 +11,35 @@ export const tasksSlice = createSlice({
   initialState: initialTasksState,
 
   reducers: {
-    loadTasks: (_currentState, action: PayloadAction<Task[]>): TasksState => ({
+    loadTasks: (
+      _currentTasksState,
+      action: PayloadAction<Task[]>,
+    ): TasksState => ({
       tasks: action.payload,
     }),
-    deleteTask: (currentState, action: PayloadAction<number>): TasksState => ({
-      tasks: currentState.tasks.filter((task) => task.id !== action.payload),
+    deleteTask: (
+      currentTasksState,
+      action: PayloadAction<number>,
+    ): TasksState => ({
+      tasks: currentTasksState.tasks.filter(
+        (task) => task.id !== action.payload,
+      ),
     }),
-    addTask: (currentState, action: PayloadAction<Task[]>): TasksState => {
-      const newTasks = [...currentState.tasks];
+    addTask: (currentTasksState, action: PayloadAction<Task[]>): TasksState => {
+      const newTasks = [...currentTasksState.tasks];
       newTasks.push(...action.payload);
       return { tasks: newTasks };
     },
+    toogleTask: (
+      currentTasksState,
+      action: PayloadAction<number>,
+    ): TasksState => ({
+      tasks: currentTasksState.tasks.map((task) =>
+        task.id === action.payload
+          ? { ...task, isDone: !task.isDone }
+          : { ...task },
+      ),
+    }),
   },
 });
 
@@ -29,5 +47,6 @@ export const {
   loadTasks: loadTaskActionCreator,
   deleteTask: deleteTaskActionCreator,
   addTask: addTaskActionCreator,
+  toogleTask: toogleTaskActionCreator,
 } = tasksSlice.actions;
 export const tasksSliceReducer = tasksSlice.reducer;

@@ -7,7 +7,7 @@ export const mockedTasks = [
   {
     id: 2,
     name: "Go more to bootcamp",
-    isDone: true,
+    isDone: false,
   },
 ];
 
