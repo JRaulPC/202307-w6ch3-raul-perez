@@ -1,3 +1,4 @@
+import { mockedTasks } from "../../mocks/mockedTasks";
 import {
   addTaskActionCreator,
   deleteTaskActionCreator,
@@ -7,18 +8,6 @@ import {
 import { TasksState } from "./types";
 
 describe("Given a tasksReducer Reducer", () => {
-  const mockedTasks = [
-    {
-      id: 0,
-      name: "Go to bootcamp",
-      isDone: true,
-    },
-    {
-      id: 1,
-      name: "Go more to bootcamp",
-      isDone: true,
-    },
-  ];
   describe("When it receives a load tasks action with 2 tasks", () => {
     test("Then it should return a new state with the receiveds tasks", () => {
       const initialState: TasksState = {
