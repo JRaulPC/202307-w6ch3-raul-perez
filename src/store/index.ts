@@ -7,7 +7,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { tasksSliceReducer } from "./tasks/tasks";
 
 const rootReducer = combineReducers({
-  tasks: tasksSliceReducer,
+  tasksState: tasksSliceReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
